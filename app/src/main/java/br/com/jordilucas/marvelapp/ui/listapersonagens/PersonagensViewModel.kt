@@ -27,8 +27,8 @@ class PersonagensViewModel(
     private val listaPersonagens = MutableLiveData<List<Personagens>>()
     fun listaPersonagens() : LiveData<List<Personagens>> = listaPersonagens
 
-    private val revistas = MutableLiveData<Revistas>()
-    fun verRevistas() : LiveData<Revistas> = revistas
+    private val revistas = MutableLiveData<List<Revistas>>()
+    fun verRevistas() : LiveData<List<Revistas>> = revistas
 
     private fun toogleLoading(show : Boolean){
         loading.value = show
@@ -87,7 +87,7 @@ class PersonagensViewModel(
                 val res = charactersInteractor.invoke(id)
                 when (res) {
                     is Outcome.Sucess -> {
-                        revistas.value = res.data
+                        revistas.value = res.data.data.results
                     }
                     is Outcome.Error -> {
                         failure.value = res.exception.message

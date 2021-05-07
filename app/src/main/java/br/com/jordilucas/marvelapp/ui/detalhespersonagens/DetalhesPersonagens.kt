@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import br.com.jordilucas.marvelapp.R
 import br.com.jordilucas.marvelapp.extensions.loadImage
 import br.com.jordilucas.marvelapp.model.Personagens
+import br.com.jordilucas.marvelapp.model.Revistas
 import br.com.jordilucas.marvelapp.ui.listapersonagens.PersonagensViewModel
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_detalhe_personagens.*
@@ -35,7 +37,14 @@ class DetalhesPersonagens: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         configuraToolbar()
         carregarDados()
-        personagensViewModel.verRevista(personagem.id.toString())
+        with(personagensViewModel){
+            verRevistas().observe(viewLifecycleOwner, Observer(::carregarDadosRevista))
+            //failure().observe(viewLifecycleOwner, Observer())
+            //loading().observe(viewLifecycleOwner, Observer())
+        }
+
+        verRevista.setOnClickListener { verRevistaMaisCara() }
+
     }
 
     private fun configuraToolbar(){
@@ -56,6 +65,36 @@ class DetalhesPersonagens: Fragment() {
         else{
             descricao.text = personagem.description
         }
+    }
+
+    private fun verRevistaMaisCara(){
+        personagensViewModel.verRevista(personagem.id.toString())
+    }
+
+    private fun carregarDadosRevista(revistas: List<Revistas>){
+        println(revistas)
+        /*var maiorValor = 0.0
+        for (rev in revistas.prices){
+            if(rev.price > maiorValor){
+                maiorValor = rev.price
+            }
+        }*/
+
+        //precoRevista.text = getString(R.string.preco_revista, maiorValor.toString())
+
+
+        thumbnail.loadImage("${personagem.thumbnail.path}/landscape_large." +
+                "${personagem.thumbnail.extension}")
+        //nomePersonagemDetalhe.text = getString(R.string.nome, revistas.title)
+        if(personagem.description.isNullOrBlank()){
+            descricao.text = resources.getText(R.string.nao_tem_descricao)
+        }
+        else{
+           // descricao.text = revistas.description
+        }
+
+
+
     }
 
 

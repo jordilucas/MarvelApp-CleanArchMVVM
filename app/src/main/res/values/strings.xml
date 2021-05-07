@@ -3,4 +3,5 @@
     <string name="text_erro_desconhecido">Ocorreu um erro. Tente Novamente.</string>
     <string name="nome">Nome: %s</string>
     <string name="nao_tem_descricao">Personagem não possui descricao</string>
+    <string name="preco_revista">O preço da revista: %s</string>
 </resources>

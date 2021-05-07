@@ -1,8 +1,8 @@
 package br.com.jordilucas.marvelapp.model
 
 data class Revistas(
-    private val title: String,
-    private val description: String,
-    private val prices: List<prices>,
-    private val images: List<images>
+     val title: String,
+     val description: String,
+     val prices: List<prices>,
+     val images: List<images>
 )
