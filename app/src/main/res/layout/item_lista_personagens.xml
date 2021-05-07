@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="72dp"
+    android:clickable="true"
+    android:background="@android:drawable/list_selector_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -26,5 +28,13 @@
         app:layout_constraintBottom_toBottomOf="@id/fotoPersonagem"
         app:layout_constraintStart_toEndOf="@id/fotoPersonagem"
         />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fotoPersonagem"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
