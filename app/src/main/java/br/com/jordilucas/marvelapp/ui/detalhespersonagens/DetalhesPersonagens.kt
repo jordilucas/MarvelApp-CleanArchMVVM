@@ -73,15 +73,21 @@ class DetalhesPersonagens: Fragment() {
 
     private fun carregarDadosRevista(revistas: List<Revistas>){
         println(revistas)
-        /*var maiorValor = 0.0
-        for (rev in revistas.prices){
-            if(rev.price > maiorValor){
-                maiorValor = rev.price
+        var maiorValor = 0.0
+        var url = ""
+        var position = 0
+        while (revistas.listIterator().hasNext()){
+            if(position < revistas.size) {
+                for (rev in revistas[position].prices) {
+                    if (rev.price > maiorValor) {
+                        maiorValor = rev.price
+                    }
+                    position++
+                }
             }
-        }*/
+        }
 
-        //precoRevista.text = getString(R.string.preco_revista, maiorValor.toString())
-
+        precoRevista.text = getString(R.string.preco_revista, maiorValor.toString())
 
         thumbnail.loadImage("${personagem.thumbnail.path}/landscape_large." +
                 "${personagem.thumbnail.extension}")
