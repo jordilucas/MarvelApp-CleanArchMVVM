@@ -2,6 +2,8 @@ package br.com.jordilucas.marvelapp.di
 
 val appMarvelComponent by lazy {
     listOf(
-        remoteModule
+        remoteModule,
+        interactorModule,
+        serviceModule
     )
 }
