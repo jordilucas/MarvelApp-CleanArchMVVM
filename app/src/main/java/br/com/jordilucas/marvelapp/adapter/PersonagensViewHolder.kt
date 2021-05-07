@@ -10,7 +10,8 @@ import kotlinx.android.synthetic.main.item_lista_personagens.view.*
 class PersonagensViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(personagens : Personagens, onItemClick: (Personagens) -> Unit, context:Context){
-        itemView.fotoPersonagem.loadImage(personagens.thumbnail.path)
+        itemView.fotoPersonagem.loadImage("${personagens.thumbnail.path}/standard_medium." +
+                "${personagens.thumbnail.extension}")
         itemView.nomePersonagem.text = personagens.name
     }
 
