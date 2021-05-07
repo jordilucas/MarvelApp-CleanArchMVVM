@@ -26,8 +26,13 @@
     <fragment
         android:id="@+id/irDetalhesPersonagensFragment"
         android:name="br.com.jordilucas.marvelapp.ui.detalhespersonagens.DetalhesPersonagens"
-        android:label="detalhesPersonagens"
-        tools:layout="@layout/fragment_detalhe_personagens"
-        />
+        android:label="detalhesPersonagens">
+
+        <argument
+            android:name="enviarPersonagens"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
 
 </navigation>
