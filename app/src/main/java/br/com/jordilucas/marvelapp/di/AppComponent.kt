@@ -4,6 +4,7 @@ val appMarvelComponent by lazy {
     listOf(
         remoteModule,
         interactorModule,
-        serviceModule
+        serviceModule,
+        uiModule
     )
 }
