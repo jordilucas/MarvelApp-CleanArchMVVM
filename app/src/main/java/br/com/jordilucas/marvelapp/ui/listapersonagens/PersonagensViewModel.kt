@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.jordilucas.marvelapp.domain.Outcome
 import br.com.jordilucas.marvelapp.domain.personagens.PersonagensInteractor
-import br.com.jordilucas.marvelapp.model.Characters
+import br.com.jordilucas.marvelapp.model.Personagens
 import br.com.jordilucas.marvelapp.model.Situacao
 import kotlinx.coroutines.*
 
@@ -23,8 +23,8 @@ class PersonagensViewModel(
     private val failure = MutableLiveData<String>()
     fun failure(): LiveData<String> = failure
 
-    private val listaPersonagens = MutableLiveData<List<Characters>>()
-    fun listaPersonagens() : LiveData<List<Characters>> = listaPersonagens
+    private val listaPersonagens = MutableLiveData<List<Personagens>>()
+    fun listaPersonagens() : LiveData<List<Personagens>> = listaPersonagens
 
     private fun toogleLoading(show : Boolean){
         loading.value = show
@@ -42,10 +42,31 @@ class PersonagensViewModel(
                             Situacao.OK -> {
                                 listaPersonagens.value = res.data.data.results
                             }
+                            Situacao.Invalid_Referer -> {
+                                failure.value = res.data.message
+                            }
+                            Situacao.Missing_API_Key -> {
+                                failure.value = res.data.message
+                            }
+                            Situacao.Missing_Forbidden -> {
+                                failure.value = res.data.message
+                            }
+                            Situacao.Missing_Hash -> {
+                                failure.value = res.data.message
+                            }
+                            Situacao.Missing_Invalid_Hash -> {
+                                failure.value = res.data.message
+                            }
+                            Situacao.Missing_Method_Not_Allowed -> {
+                                failure.value = res.data.message
+                            }
+                            Situacao.Missing_Timestamp -> {
+                                failure.value = res.data.message
+                            }
                         }
                     }
                     is Outcome.Error -> {
-
+                        failure.value = "Error"
                     }
                     else -> {
                         failure.value = "Serviço Indisponivel"
