@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/listarPersonagensFragment"
         android:name="br.com.jordilucas.marvelapp.ui.listapersonagens.ListaPersonagensFragment"
-        android:label="Lista Personagens"
+        android:label="ListaPersonagens"
         tools:layout="@layout/fragment_lista_personagens"
         />
 
