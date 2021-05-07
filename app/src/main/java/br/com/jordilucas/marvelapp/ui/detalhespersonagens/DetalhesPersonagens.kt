@@ -9,11 +9,15 @@ import androidx.fragment.app.Fragment
 import br.com.jordilucas.marvelapp.R
 import br.com.jordilucas.marvelapp.extensions.loadImage
 import br.com.jordilucas.marvelapp.model.Personagens
+import br.com.jordilucas.marvelapp.ui.listapersonagens.PersonagensViewModel
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_detalhe_personagens.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class DetalhesPersonagens: Fragment() {
+
+    private val personagensViewModel: PersonagensViewModel by viewModel()
 
     private val personagem: Personagens by lazy{
         Gson().fromJson(DetalhesPersonagensArgs.fromBundle(requireArguments()).enviarPersonagens, Personagens::class.java)
@@ -31,6 +35,7 @@ class DetalhesPersonagens: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         configuraToolbar()
         carregarDados()
+        personagensViewModel.verRevista(personagem.id.toString())
     }
 
     private fun configuraToolbar(){
