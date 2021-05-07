@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Marvel app</string>
     <string name="text_erro_desconhecido">Ocorreu um erro. Tente Novamente.</string>
+    <string name="nome">Nome: %s</string>
+    <string name="nao_tem_descricao">Personagem não possui descricao</string>
 </resources>

@@ -13,6 +13,9 @@ class PersonagensViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         itemView.fotoPersonagem.loadImage("${personagens.thumbnail.path}/standard_medium." +
                 "${personagens.thumbnail.extension}")
         itemView.nomePersonagem.text = personagens.name
+        itemView.onClick.setOnClickListener {
+            onItemClick(personagens)
+        }
     }
 
 }
