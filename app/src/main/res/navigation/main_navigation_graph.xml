@@ -10,6 +10,24 @@
         android:name="br.com.jordilucas.marvelapp.ui.listapersonagens.ListaPersonagensFragment"
         android:label="ListaPersonagens"
         tools:layout="@layout/fragment_lista_personagens"
+        >
+
+        <action
+            android:id="@id/irDetalhesPersonagensFragment"
+            app:destination="@id/irDetalhesPersonagensFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/irDetalhesPersonagensFragment"
+        android:name="br.com.jordilucas.marvelapp.ui.detalhespersonagens.DetalhesPersonagens"
+        android:label="detalhesPersonagens"
+        tools:layout="@layout/fragment_detalhe_personagens"
         />
 
 </navigation>
