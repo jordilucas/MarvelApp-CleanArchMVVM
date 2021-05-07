@@ -5,5 +5,5 @@ data class Data(
     val limit: Int,
     val total: Int,
     val count: Int,
-    val results: List<Characters>
+    val results: List<Personagens>
 )

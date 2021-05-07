@@ -1,6 +1,5 @@
 package br.com.jordilucas.marvelapp.api
 
-import br.com.jordilucas.marvelapp.model.Characters
 import br.com.jordilucas.marvelapp.model.PersonagensResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
