@@ -80,12 +80,17 @@ class DetalhesPersonagens: Fragment() {
     }
 
     private fun carregarDadosRevista(revistas: List<Revistas>){
-        val args = RevistaFragmentArgs.Builder()
-            .setEnviarRevistas(Gson().toJson(revistas))
-            .build()
-            .toBundle()
+        if(revistas.isNullOrEmpty()){
+            Toast.makeText(context, "Não possui revista", Toast.LENGTH_LONG).show()
+        }
+        else{
+            val args = RevistaFragmentArgs.Builder()
+                .setEnviarRevistas(Gson().toJson(revistas))
+                .build()
+                .toBundle()
 
-        navigate(origemId, R.id.irParaRevistas, args)
+            navigate(origemId, R.id.irParaRevistas, args)
+        }
     }
 
     private fun mostrarEsconderProgress(flag: Boolean?){
