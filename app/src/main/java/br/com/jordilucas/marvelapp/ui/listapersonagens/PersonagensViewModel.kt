@@ -70,10 +70,7 @@ class PersonagensViewModel(
                         }
                     }
                     is Outcome.Error -> {
-                        failure.value = "Error"
-                    }
-                    else -> {
-                        failure.value = "Serviço Indisponivel"
+                        failure.value = res.exception.message
                     }
                 }
             }

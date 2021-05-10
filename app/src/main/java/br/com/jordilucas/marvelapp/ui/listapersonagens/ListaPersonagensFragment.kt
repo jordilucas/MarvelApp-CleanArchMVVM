@@ -40,7 +40,7 @@ class ListaPersonagensFragment : Fragment() {
         with(personagensViewModel){
             listaPersonagens().observe(viewLifecycleOwner, Observer(::configurarRecyclerView))
             failure().observe(viewLifecycleOwner, Observer(::observerFailure))
-            //loading().observe(viewLifecycleOwner, Observer(::loading))
+            loading().observe(viewLifecycleOwner, Observer(::mostrarEsconderProgress))
         }
     }
 
@@ -70,7 +70,7 @@ class ListaPersonagensFragment : Fragment() {
         navigate(origemId, R.id.irDetalhesPersonagensFragment, args)
     }
 
-    /*private fun loading(flag: Boolean?){
+    private fun mostrarEsconderProgress(flag: Boolean?){
         val isLoading = flag ?: false
         if(isLoading){
             progress.visibility = View.VISIBLE
@@ -79,10 +79,10 @@ class ListaPersonagensFragment : Fragment() {
                 progress.visibility = View.GONE
             }
         }
-    }*/
+    }
 
     private fun observerFailure(errorMsg: String?) {
-        //progress.visibility = View.GONE
+        progress.visibility = View.GONE
         errorMsg?.let {
             if (it.isNotBlank()) {
                 Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show()

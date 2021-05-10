@@ -9,8 +9,7 @@
         android:id="@+id/listarPersonagensFragment"
         android:name="br.com.jordilucas.marvelapp.ui.listapersonagens.ListaPersonagensFragment"
         android:label="ListaPersonagens"
-        tools:layout="@layout/fragment_lista_personagens"
-        >
+        tools:layout="@layout/fragment_lista_personagens">
 
         <action
             android:id="@id/irDetalhesPersonagensFragment"
@@ -18,8 +17,7 @@
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            />
+            app:popExitAnim="@anim/slide_out_right" />
 
     </fragment>
 
@@ -28,8 +26,27 @@
         android:name="br.com.jordilucas.marvelapp.ui.detalhespersonagens.DetalhesPersonagens"
         android:label="detalhesPersonagens">
 
+        <action
+            android:id="@id/irParaRevistas"
+            app:destination="@id/irParaRevistas"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
         <argument
             android:name="enviarPersonagens"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/irParaRevistas"
+        android:name="br.com.jordilucas.marvelapp.ui.revista.RevistaFragment">
+
+        <argument
+            android:name="enviarRevistas"
             android:defaultValue=""
             app:argType="string" />
 
