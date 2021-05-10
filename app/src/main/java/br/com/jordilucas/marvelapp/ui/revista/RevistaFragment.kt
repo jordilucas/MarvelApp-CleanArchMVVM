@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import br.com.jordilucas.marvelapp.R
 import br.com.jordilucas.marvelapp.extensions.loadImage
-import br.com.jordilucas.marvelapp.model.Personagens
 import br.com.jordilucas.marvelapp.model.Revistas
-import br.com.jordilucas.marvelapp.model.prices
-import br.com.jordilucas.marvelapp.ui.detalhespersonagens.DetalhesPersonagensArgs
+import br.com.jordilucas.marvelapp.model.Images
+import br.com.jordilucas.marvelapp.model.Prices
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_detalhe_personagens.*
+import kotlinx.android.synthetic.main.fragment_revista.*
+import kotlinx.android.synthetic.main.fragment_revista.toolbar
 import java.util.*
 
 class RevistaFragment : Fragment() {
@@ -32,39 +33,47 @@ class RevistaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        println(revistas)
+        configuraToolbar()
         carregarDadosRevista(revistas)
 
     }
 
+    private fun configuraToolbar(){
+        val activity = activity as AppCompatActivity?
+        activity?.setSupportActionBar(toolbar)
+        activity?.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        activity?.supportActionBar?.setHomeButtonEnabled(true)
+        toolbar.setNavigationOnClickListener { activity.onBackPressed() }
+    }
+
     private fun carregarDadosRevista(revistas: List<Revistas>){
         var maiorValor = 0.0
+        var image: Images
+        var indexRevista: Int = -1
         for (rev in revistas){
             for(rev2 in rev.prices){
                 if (rev2.price > maiorValor) {
                     maiorValor = rev2.price
+                    indexRevista = revistas.indexOf(rev)
                 }
             }
         }
 
+        toolbar.setTitle(revistas.get(indexRevista).title)
+
         println("Maior valor é "+maiorValor)
+        println("Index "+indexRevista.toString())
 
-        //precoRevista.text = getString(R.string.preco_revista, maiorValor.toString())
-
-        /*thumbnail.loadImage("${personagem.thumbnail.path}/landscape_large." +
-                "${personagem.thumbnail.extension}")
-        //nomePersonagemDetalhe.text = getString(R.string.nome, revistas.title)
-        if(personagem.description.isNullOrBlank()){
+        preco.text = getString(R.string.preco_revista, maiorValor.toString())
+        if(revistas.get(indexRevista)?.description.isNullOrBlank()){
             descricao.text = resources.getText(R.string.nao_tem_descricao)
         }
         else{
-            // descricao.text = revistas.description
-        }*/
+             descricao.text = revistas[0].description
+        }
 
-    }
-
-    fun findMax(list: List<Double>): Double? {
-        return list.max()
+        thumbnail.loadImage("${revistas[0].images[0].path}/landscape_large." +
+                "${revistas[indexRevista].images[indexRevista].extension}")
     }
 
 }
