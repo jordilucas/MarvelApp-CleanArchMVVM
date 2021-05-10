@@ -1,6 +1,6 @@
 package br.com.jordilucas.marvelapp.model
 
-data class images (
+data class Images (
      val path: String,
      val extension: String
 )
