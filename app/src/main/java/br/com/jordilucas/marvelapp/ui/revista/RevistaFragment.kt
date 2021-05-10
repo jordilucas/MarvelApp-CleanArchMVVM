@@ -9,6 +9,7 @@ import br.com.jordilucas.marvelapp.R
 import br.com.jordilucas.marvelapp.extensions.loadImage
 import br.com.jordilucas.marvelapp.model.Personagens
 import br.com.jordilucas.marvelapp.model.Revistas
+import br.com.jordilucas.marvelapp.model.prices
 import br.com.jordilucas.marvelapp.ui.detalhespersonagens.DetalhesPersonagensArgs
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_detalhe_personagens.*
@@ -32,28 +33,25 @@ class RevistaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         println(revistas)
+        carregarDadosRevista(revistas)
 
     }
 
-    /*private fun carregarDadosRevista(revistas: List<Revistas>){
-        println(revistas)
+    private fun carregarDadosRevista(revistas: List<Revistas>){
         var maiorValor = 0.0
-        var url = ""
-        var position = 0
-        while (revistas.listIterator().hasNext()){
-            if(position < revistas.size) {
-                for (rev in revistas[position].prices) {
-                    if (rev.price > maiorValor) {
-                        maiorValor = rev.price
-                    }
-                    position++
+        for (rev in revistas){
+            for(rev2 in rev.prices){
+                if (rev2.price > maiorValor) {
+                    maiorValor = rev2.price
                 }
             }
         }
 
+        println("Maior valor é "+maiorValor)
+
         //precoRevista.text = getString(R.string.preco_revista, maiorValor.toString())
 
-        thumbnail.loadImage("${personagem.thumbnail.path}/landscape_large." +
+        /*thumbnail.loadImage("${personagem.thumbnail.path}/landscape_large." +
                 "${personagem.thumbnail.extension}")
         //nomePersonagemDetalhe.text = getString(R.string.nome, revistas.title)
         if(personagem.description.isNullOrBlank()){
@@ -61,8 +59,12 @@ class RevistaFragment : Fragment() {
         }
         else{
             // descricao.text = revistas.description
-        }
+        }*/
 
-    }*/
+    }
+
+    fun findMax(list: List<Double>): Double? {
+        return list.max()
+    }
 
 }
